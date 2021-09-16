@@ -6,15 +6,16 @@ function addCourseAction(title) {
 }
 
 export default function CourseList() {
-  const qty = 2;
 
-  const courses = useSelector(state => state.data.slice(0, qty));
+  const courses = useSelector(state => state.data);
   const dispatch = useDispatch();
 
   function addCourse() {
     dispatch(addCourseAction('GraphQL'))
   }
-
+  function clearCourses(){
+    dispatch({ type: 'CLEAR_COURSES'})
+  }
   return (
     <>
       <ul>
@@ -22,6 +23,9 @@ export default function CourseList() {
       </ul>
       <button type="button" onClick={addCourse}>
         Adicionar curso
+      </button>
+      <button type="button" onClick={clearCourses}>
+        Limpar
       </button>
     </>
   );
